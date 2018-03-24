@@ -5,12 +5,12 @@
  */
 package javafx1;
 
+import javafx.scene.paint.Color;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.stage.Stage;
 
 /**
@@ -21,23 +21,17 @@ public class JavaFX1 extends Application {
     
     @Override
     public void start(Stage primaryStage) {
-        Button btn = new Button();
-        btn.setText("Say 'Hello World'");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
-            
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
-            }
-        });
+        primaryStage.setTitle("Welcome");
+        primaryStage.show();
         
-        StackPane root = new StackPane();
-        root.getChildren().add(btn);
-        
-        Scene scene = new Scene(root, 300, 250);
-        
-        primaryStage.setTitle("Hello World!");
-        primaryStage.setScene(scene);
+        Group root = new Group();
+        Canvas canvas = new Canvas (1280, 720);
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+        gc.setFill(Color.GREEN);
+        gc.setStroke(Color.RED);
+        gc.fillOval(0, 0, 50, 100);
+        root.getChildren().add(canvas);
+        primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
 
